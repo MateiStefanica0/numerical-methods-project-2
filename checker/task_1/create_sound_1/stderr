@@ -1,0 +1,7 @@
+QStandardPaths: wrong permissions on runtime directory /run/user/0/, 0755 instead of 0700
+error: conversion of 29107 to int64_t value failed
+error: called from
+    oscillator at line 16 column 11
+    create_instruments at line 20 column 9
+    create_sound at line 9 column 18
+    run_test at line 14 column 19

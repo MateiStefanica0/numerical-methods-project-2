@@ -1,0 +1,75 @@
+Assignment: https://mn.pages.upb.ro/2023-2024/tema2/tema2-statement/intro
+    Task 1
+        * stereo_to_mono()
+            - aplicam formula din enunt si normalizam rezultatul la final
+        * spectogram()
+            - calculam lungimea semnalului si numarul de ferestre de semnal
+            - aplicam functia hann pe lungimea unei ferestre de semnal
+            - pentru fiecare fereatra calculam produsul hadamard cu rezultatul
+            functiei hann
+            - stergem partea conjugata a rezultatului (a doua jumatate)
+            - punem ceea ce rezulta in modul si adaugam in matricea de spectograma
+            - calculam rezolutia si ii stergem ultima valoare
+            - calculam si vectorul timp cu (nr de ferestre / fs) pasi egali
+            incepand cu 0
+        * oscillator()
+            - cream vectorul timp cu pasul de 1/sampling_rate
+            - calculam sinewave-ul
+            - calculam numarul de sample-uri pentru cele 4 valori (folosim 
+            primele 3 valori pentru a o calcula pe cea de la S)
+            - calculam envelope-urile pentru cele 4 valori folosind linespace
+            - concatenam cei 4 vectori laolalta
+            - folosim produsul hadamard dintre sinewave si envelope pentru a
+            obtine rezultatul (caruia ii stergem ultima valoare)
+        * low_pass()
+            - folosim fft pentru a obtine transformata Fourier
+            - calculam pasul pentru frecventele posibile
+            - cream un vector-masca, in care vom pune 1 pentru frecventele mai
+            joase decat limita si 0 pentru cele mai inalte
+            - folosim produsul hadamard intre masca si transformata fourier
+            - facem inversa transformatei fourier
+            - normalizam rezultatul
+        * apply_reverb() 
+            - transformam datele de intrare din stereo in mono
+            - folosim fftconv pentru a obtine produsul de convolutie, pe care
+            il normalizam
+
+    Task 2
+        * parse_data()
+            - deschidem fisierul de intrare, citim datele si il inchidem
+        * spline_c2()
+            - initializam matricea si incepem sa o completam cu coeficientii
+            dedusi din formule
+            - dupa completarea matricei, rezolvam sistemul folosind inversa
+            matricei si obtinem vectorul de coeficienti
+        * P_spline()
+            - folosind vectorul de coeficienti determinat anterior, aplicam,
+            in functie de intervalul in care se afla valorile de interpolat, 
+            functiile spline corespunzatoare
+        * vandermonde() 
+            - initializam prima coloana din matrice cu 1, iar apoi iteram
+            de-a lungul liniilor si calculam fiecare termen ca fiind cel din
+            stanga lui inmultit cu x(i), obtinand astfel matricea vandermonde
+            - la final rezolvam sistemul pentru a afla vectorul de coeficienti
+        * P_vandermonde()
+            - folosind vectorul de coeficienti determinat anterior vom inmulti
+            cu suportul de interpolare pentru a obtine polinoamele necesare
+            interpolarii
+    Task 3
+        * preprocess() 
+            - parcurgem liniile matricei si eliminam acele linii in care
+            numarul de review-uri e strict mai mic decat minimul dat ca 
+            parametru
+        * cosine_similarity()
+            - aplicam formula
+        * recommendations()
+            - citim matricea de la calea data ca parametru
+            - apelam functia de preprocesare si facem descompunerea in valori
+            valori singulare
+            - initializam o variabila in care punem care e tema preferata
+            - parcurgem matricea si ii sortam liniile crescator in functie de
+            similaritatea cu tema preferata, avand grija sa tinem cont si de
+            ordinea indecsilor
+            - la final, returnam primii num_recoms indici, adica cele mai bune
+            recomandari
+        

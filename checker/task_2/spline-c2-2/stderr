@@ -1,0 +1,6 @@
+QStandardPaths: wrong permissions on runtime directory /run/user/0/, 0755 instead of 0700
+warning: matrix singular to machine precision
+warning: called from
+    spline_c2 at line 49 column 8
+    run_test at line 5 column 10
+
